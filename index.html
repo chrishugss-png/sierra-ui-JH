@@ -462,6 +462,36 @@
     font-weight: 500;
   }
 
+  /* "Decision to be made" rows - flagged red for escalation */
+  .poc-row.decision .poc-track {
+    background: linear-gradient(90deg, rgba(225,10,10,0.09) 0%, rgba(225,10,10,0.03) 100%);
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-left: 3px solid var(--vm-red);
+  }
+  .poc-row.decision .poc-track .poc-planning-text {
+    font-style: normal;
+    color: var(--vm-red-deep);
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .poc-row.decision .poc-track .poc-planning-text::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    background: var(--vm-red);
+    box-shadow: 0 0 0 4px rgba(225,10,10,0.2);
+  }
+  .poc-row.decision .poc-label {
+    color: var(--vm-red-deep);
+  }
+
   /* Legend */
   .poc-legend {
     display: flex;
@@ -794,6 +824,143 @@
     margin-bottom: 6px;
   }
 
+
+  /* ===== VIDEO DEMO ===== */
+  .demo-card {
+    display: block;
+    max-width: 900px;
+    margin: 8px auto 0;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s;
+    box-shadow: var(--shadow-soft);
+  }
+  .demo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  }
+  .demo-preview {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #0F0F0F 0%, #1A1A22 100%);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .demo-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 30% 35%, rgba(225,10,10,0.18) 0%, transparent 55%),
+                      radial-gradient(circle at 75% 70%, rgba(0,25,165,0.12) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .demo-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .demo-play-btn {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255,255,255,0.55);
+    display: grid;
+    place-items: center;
+    transition: transform 0.25s, background 0.25s, border-color 0.25s;
+    z-index: 2;
+    color: white;
+  }
+  .demo-card:hover .demo-play-btn {
+    background: var(--vm-red);
+    border-color: var(--vm-red);
+    transform: scale(1.08);
+    box-shadow: 0 10px 30px rgba(225,10,10,0.4);
+  }
+  .demo-play-btn svg {
+    margin-left: 6px;
+  }
+  .demo-label {
+    position: absolute;
+    top: 22px;
+    left: 26px;
+    color: white;
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .demo-label .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    background: var(--vm-red);
+    box-shadow: 0 0 0 4px rgba(225,10,10,0.25);
+  }
+  .demo-source {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .demo-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 28px;
+    background: white;
+    border-top: 1px solid var(--line);
+  }
+  .demo-cta-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .demo-cta-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .demo-cta-sub {
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+  .demo-cta-arrow {
+    color: var(--vm-red);
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+  }
+  .demo-card:hover .demo-cta-arrow {
+    transform: translateX(6px);
+  }
+
   /* ===== FOOTER ===== */
   footer {
     background: #0F0F0F;
@@ -838,8 +1005,9 @@
       <li><a href="#approach">Approach</a></li>
       <li><a href="#timeline">Timeline</a></li>
       <li><a href="#benefits">OPEX</a></li>
-      <li><a href="#delivery">Delivery</a></li>
       <li><a href="#risks">Risks</a></li>
+      <li><a href="#delivery">Delivery</a></li>
+      <li><a href="#demo">Demo</a></li>
     </ul>
     <span class="nav-audience">Digital Focus</span>
   </div>
@@ -968,32 +1136,32 @@
           <div class="poc-head-cell">Mar</div>
         </div>
 
-        <!-- Broadband Faults: solid bar 22 Sep - 2 Nov -->
+        <!-- Broadband Faults: solid bar 22 Sep - 22 Dec (extended end) -->
         <div class="poc-row">
           <div class="poc-label">Broadband Faults</div>
           <div class="poc-track">
             <div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div>
             <div class="poc-diamond" style="left: 2.38%;"></div>
-            <div class="poc-bar" style="left: 10.48%; width: 19.05%;"></div>
+            <div class="poc-bar" style="left: 10.48%; width: 42.52%;"></div>
             <div class="poc-milestone" style="left: 10.48%;"><span class="pct">20%</span><span class="date">22 Sep</span></div>
-            <div class="poc-milestone" style="left: 16.59%;"><span class="pct">50%</span><span class="date">05 Oct</span></div>
-            <div class="poc-milestone" style="left: 23.04%;"><span class="pct">75%</span><span class="date">19 Oct</span></div>
-            <div class="poc-milestone" style="left: 29.52%;"><span class="pct">100%</span><span class="date">2 Nov</span></div>
+            <div class="poc-milestone" style="left: 23.50%;"><span class="pct">50%</span><span class="date">20 Oct</span></div>
+            <div class="poc-milestone" style="left: 36.67%;"><span class="pct">75%</span><span class="date">17 Nov</span></div>
+            <div class="poc-milestone" style="left: 53.00%;"><span class="pct">100%</span><span class="date">22 Dec</span></div>
           </div>
         </div>
 
-        <!-- Appointments: First 50 at 2 Nov, solid bar 9 Nov - 14 Dec -->
+        <!-- Appointments: First 50 pilot at 2 Nov (achieved), main rollout Jan-Feb 2027 -->
         <div class="poc-row">
           <div class="poc-label">Appointments</div>
           <div class="poc-track">
             <div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div><div class="poc-cell"></div>
             <div class="poc-diamond" style="left: 29.52%;"></div>
             <div class="poc-milestone first-50" style="left: 29.52%;"><span class="pct">First 50</span><span class="date">2 Nov</span></div>
-            <div class="poc-bar" style="left: 32.86%; width: 16.45%;"></div>
-            <div class="poc-milestone" style="left: 32.86%;"><span class="pct">20%</span><span class="date">9 Nov</span></div>
-            <div class="poc-milestone" style="left: 39.52%;"><span class="pct">50%</span><span class="date">23 Nov</span></div>
-            <div class="poc-milestone" style="left: 46.08%;"><span class="pct">75%</span><span class="date">7 Dec</span></div>
-            <div class="poc-milestone" style="left: 49.31%;"><span class="pct">100%</span><span class="date">14 Dec</span></div>
+            <div class="poc-bar" style="left: 62.67%; width: 20.49%;"></div>
+            <div class="poc-milestone" style="left: 62.67%;"><span class="pct">20%</span><span class="date">12 Jan</span></div>
+            <div class="poc-milestone" style="left: 69.12%;"><span class="pct">50%</span><span class="date">26 Jan</span></div>
+            <div class="poc-milestone" style="left: 76.02%;"><span class="pct">75%</span><span class="date">9 Feb</span></div>
+            <div class="poc-milestone" style="left: 83.16%;"><span class="pct">100%</span><span class="date">23 Feb</span></div>
           </div>
         </div>
 
@@ -1028,11 +1196,11 @@
           </div>
         </div>
 
-        <!-- GECX: In planning (new swimlane) -->
-        <div class="poc-row planning">
+        <!-- GECX: Decision to be made (escalated status) -->
+        <div class="poc-row decision">
           <div class="poc-label">GECX</div>
           <div class="poc-track">
-            <span class="poc-planning-text">In planning</span>
+            <span class="poc-planning-text">Decision to be made</span>
           </div>
         </div>
 
@@ -1063,14 +1231,14 @@
 <section class="opex" id="benefits">
   <div class="container">
     <span class="section-eyebrow">OPEX Avoidance</span>
-    <h2 class="section-title"><em>£2.3m</em> of the digital £4m target - from three intents.</h2>
-    <p class="section-lead">Digital OPEX avoidance target for end of 2027: £4m. The three intents currently in build deliver 58% of it.</p>
+    <h2 class="section-title"><em>£881k</em> of the digital £5.5m target - from three intents.</h2>
+    <p class="section-lead">Digital OPEX avoidance target for end of 2027: £5.5m. Three intents currently in build deliver the first £881k.</p>
 
     <div class="opex-headline">
-      <div class="opex-headline-num"><em>£4m</em></div>
+      <div class="opex-headline-num"><em>£5.5m</em></div>
       <div class="opex-headline-text">
         <strong>Digital OPEX avoidance target - end of 2027</strong>
-        These three intents contribute £2.3m against that target. The remaining £1.7m comes from the in-planning intents (Package Change, Billing Bill Query, GECX).
+        These three intents contribute £881k against that target. The remaining £4.6m comes from the in-planning intents (Package Change, Billing Bill Query, GECX).
       </div>
     </div>
 
@@ -1078,7 +1246,7 @@
 
       <div class="opex-card">
         <div class="opex-card-name">Broadband Faults</div>
-        <div class="opex-figure">£1.1m</div>
+        <div class="opex-figure">£583k</div>
         <div class="opex-caption">OPEX avoidance</div>
         <div class="opex-containment">
           <span class="opex-containment-pct">40%</span>
@@ -1088,7 +1256,7 @@
 
       <div class="opex-card">
         <div class="opex-card-name">Appointments</div>
-        <div class="opex-figure">£700k</div>
+        <div class="opex-figure">£190k</div>
         <div class="opex-caption">OPEX avoidance</div>
         <div class="opex-containment">
           <span class="opex-containment-pct">55%</span>
@@ -1098,11 +1266,48 @@
 
       <div class="opex-card">
         <div class="opex-card-name">TV Faults</div>
-        <div class="opex-figure">£500k</div>
+        <div class="opex-figure">£108k</div>
         <div class="opex-caption">OPEX avoidance</div>
         <div class="opex-containment">
           <span class="opex-containment-pct">40%</span>
           <span class="opex-containment-label">Containment target</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<hr class="divider">
+
+<!-- ===== RISKS & DEPENDENCIES ===== -->
+<section id="risks">
+  <div class="container">
+    <span class="section-eyebrow">Risks & Dependencies</span>
+    <h2 class="section-title">Two dependencies to actively manage.</h2>
+    <p class="section-lead">Both risks sit outside the CCAI team's direct control. The delivery model above is designed to reduce exposure to the first; the second requires close coordination with the DPPA team.</p>
+
+    <div class="risks-frame">
+
+      <div class="risk-card">
+        <div class="risk-tag">Risk 01 - Resource</div>
+        <h3>Competition for TCS engineering resource</h3>
+        <p>TCS engineering capacity is shared across multiple concurrent programmes. Contention could slow backend integration and governance sign-off for the Sierra AI build.</p>
+        <div class="mitigation">
+          <strong>Mitigation</strong>
+          The CCAI internal delivery model reduces exposure by owning discovery, front-end prototyping and design influence in-house - leaving TCS to focus only on standard backend API integration and governance.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-tag">Risk 02 - Dependency</div>
+        <h3>Delivery of the voice agentic agents by the DPPA team</h3>
+        <p>The programme depends on the voice agents being built by the DPPA team. Sierra's messaging agents extend those voice capabilities, so any slippage in voice delivery will directly impact the timeline above.</p>
+        <div class="mitigation">
+          <strong>Mitigation</strong>
+          Close coordination with the DPPA team, aligned delivery milestones, and early visibility of voice agent readiness feeding into the sequencing shown in the delivery timeline.
         </div>
       </div>
 
@@ -1207,36 +1412,36 @@
 
 <hr class="divider">
 
-<!-- ===== RISKS & DEPENDENCIES ===== -->
-<section id="risks">
+<!-- ===== VIDEO DEMO ===== -->
+<section id="demo">
   <div class="container">
-    <span class="section-eyebrow">Risks & Dependencies</span>
-    <h2 class="section-title">Two dependencies to actively manage.</h2>
-    <p class="section-lead">Both risks sit outside the CCAI team's direct control. The delivery model above is designed to reduce exposure to the first; the second requires close coordination with the DPPA team.</p>
+    <span class="section-eyebrow">Demo</span>
+    <h2 class="section-title">See Sierra AI in action.</h2>
+    <p class="section-lead">A short walkthrough of the messaging agent handling a real customer journey - from digital entry point through to resolution.</p>
 
-    <div class="risks-frame">
-
-      <div class="risk-card">
-        <div class="risk-tag">Risk 01 - Resource</div>
-        <h3>Competition for TCS engineering resource</h3>
-        <p>TCS engineering capacity is shared across multiple concurrent programmes. Contention could slow backend integration and governance sign-off for the Sierra AI build.</p>
-        <div class="mitigation">
-          <strong>Mitigation</strong>
-          The CCAI internal delivery model reduces exposure by owning discovery, front-end prototyping and design influence in-house - leaving TCS to focus only on standard backend API integration and governance.
+    <a href="https://vimeo.com/1229481743" target="_blank" rel="noopener" class="demo-card">
+      <div class="demo-preview">
+        <div class="demo-label"><span class="live-dot"></span>Sierra AI - POC Walkthrough</div>
+        <div class="demo-source">Vimeo</div>
+        <div class="demo-play-btn">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 4 L20 12 L6 20 Z"/>
+          </svg>
         </div>
       </div>
-
-      <div class="risk-card">
-        <div class="risk-tag">Risk 02 - Dependency</div>
-        <h3>Delivery of the voice agentic agents by the DPPA team</h3>
-        <p>The programme depends on the voice agents being built by the DPPA team. Sierra's messaging agents extend those voice capabilities, so any slippage in voice delivery will directly impact the timeline above.</p>
-        <div class="mitigation">
-          <strong>Mitigation</strong>
-          Close coordination with the DPPA team, aligned delivery milestones, and early visibility of voice agent readiness feeding into the sequencing shown in the delivery timeline.
+      <div class="demo-cta-row">
+        <div class="demo-cta-left">
+          <span class="demo-cta-text">See the demo</span>
+          <span class="demo-cta-sub">Opens on Vimeo in a new tab</span>
         </div>
+        <span class="demo-cta-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </span>
       </div>
-
-    </div>
+    </a>
   </div>
 </section>
 
