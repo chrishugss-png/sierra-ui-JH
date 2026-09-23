@@ -504,7 +504,175 @@
     border: 1px solid var(--line);
   }
 
-  /* ===== DELIVERY APPROACH (CCAI vs TCS) ===== */
+  /* ===== OPEX AVOIDANCE (dark section, green accent for gain/savings) ===== */
+  .opex {
+    background: #0F0F0F;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    --opex-green: #16A34A;
+    --opex-green-light: #4ADE80;
+    --opex-green-deep: #15803D;
+    --opex-gradient: linear-gradient(135deg, #4ADE80 0%, #16A34A 50%, #15803D 100%);
+  }
+  .opex::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 85% 20%, rgba(22,163,74,0.18) 0%, transparent 55%),
+                      radial-gradient(circle at 10% 90%, rgba(74,222,128,0.10) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .opex .container { position: relative; z-index: 1; }
+  .opex .section-eyebrow {
+    background: rgba(255,255,255,0.08);
+    color: #4ADE80;
+  }
+  .opex .section-title {
+    color: white;
+    margin-bottom: 24px;
+  }
+  .opex .section-title em {
+    font-style: normal;
+    background: var(--opex-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .opex .section-lead {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 48px;
+    max-width: 640px;
+  }
+
+  .opex-headline {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(22,163,74,0.16) 0%, rgba(21,128,61,0.06) 100%);
+    border: 1px solid rgba(74,222,128,0.3);
+    border-radius: 20px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 700px) { .opex-headline { grid-template-columns: 1fr; gap: 16px; padding: 24px; } }
+  .opex-headline-num {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1;
+    color: white;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .opex-headline-num em {
+    font-style: normal;
+    background: var(--opex-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .opex-headline-text {
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+  .opex-headline-text strong {
+    color: white;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    display: block;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .opex-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 900px) { .opex-grid { grid-template-columns: 1fr; } }
+
+  .opex-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .opex-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--opex-gradient);
+    opacity: 0.9;
+  }
+  .opex-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(74,222,128,0.45);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .opex-card-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .opex-figure {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(56px, 6vw, 76px);
+    font-weight: 800;
+    line-height: 0.95;
+    color: white;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .opex-caption {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: -12px;
+  }
+  .opex-containment {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    margin-top: auto;
+  }
+  .opex-containment-pct {
+    font-family: 'Sora', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #4ADE80;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .opex-containment-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+    /* ===== DELIVERY APPROACH (CCAI vs TCS) ===== */
+
   .delivery-bg { background: var(--bg-soft); }
   .responsibilities {
     display: grid;
@@ -669,6 +837,7 @@
     <ul class="nav-links">
       <li><a href="#approach">Approach</a></li>
       <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#benefits">OPEX</a></li>
       <li><a href="#delivery">Delivery</a></li>
       <li><a href="#risks">Risks</a></li>
     </ul>
@@ -884,6 +1053,59 @@
         </div>
         <div class="poc-legend-note">Each bar spans the build-to-live window with 20 / 50 / 75 / 100% milestone dates.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== OPEX AVOIDANCE ===== -->
+<section class="opex" id="benefits">
+  <div class="container">
+    <span class="section-eyebrow">OPEX Avoidance</span>
+    <h2 class="section-title"><em>£2.3m</em> of the digital £4m target - from three intents.</h2>
+    <p class="section-lead">Digital OPEX avoidance target for end of 2027: £4m. The three intents currently in build deliver 58% of it.</p>
+
+    <div class="opex-headline">
+      <div class="opex-headline-num"><em>£4m</em></div>
+      <div class="opex-headline-text">
+        <strong>Digital OPEX avoidance target - end of 2027</strong>
+        These three intents contribute £2.3m against that target. The remaining £1.7m comes from the in-planning intents (Package Change, Billing Bill Query, GECX).
+      </div>
+    </div>
+
+    <div class="opex-grid">
+
+      <div class="opex-card">
+        <div class="opex-card-name">Broadband Faults</div>
+        <div class="opex-figure">£1.1m</div>
+        <div class="opex-caption">OPEX avoidance</div>
+        <div class="opex-containment">
+          <span class="opex-containment-pct">40%</span>
+          <span class="opex-containment-label">Containment target</span>
+        </div>
+      </div>
+
+      <div class="opex-card">
+        <div class="opex-card-name">Appointments</div>
+        <div class="opex-figure">£700k</div>
+        <div class="opex-caption">OPEX avoidance</div>
+        <div class="opex-containment">
+          <span class="opex-containment-pct">55%</span>
+          <span class="opex-containment-label">Containment target</span>
+        </div>
+      </div>
+
+      <div class="opex-card">
+        <div class="opex-card-name">TV Faults</div>
+        <div class="opex-figure">£500k</div>
+        <div class="opex-caption">OPEX avoidance</div>
+        <div class="opex-containment">
+          <span class="opex-containment-pct">40%</span>
+          <span class="opex-containment-label">Containment target</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
